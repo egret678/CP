@@ -1,2 +1,4 @@
 # exclude executable file
 *.bin
+
+.DS_Store
