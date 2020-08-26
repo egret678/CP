@@ -13,26 +13,26 @@ int max(int a, int b){
 }
 
 int main() {
-  scanf("%d %d", &n, &W);
-  for (int i = 0; i < n; ++i) scanf("%d %d", &weight[i], &value[i]);
+    scanf("%d %d", &n, &W);
+    for (int i = 0; i < n; ++i) scanf("%d %d", &weight[i], &value[i]);
 
-  // DP初期条件: dp[0][w] = 0
-  for (int w = 0; w <= W; ++w) dp[0][w] = 0;
+    // DP初期条件: dp[0][w] = 0
+    for (int w = 0; w <= W; ++w) dp[0][w] = 0;
 
-  // DPループ
-  for (int i = 0; i < n; ++i) {
+    // DPループ
+    for (int i = 0; i < n; ++i) {
     for (int w = 0; w <= W; ++w) {
-      if (w >= weight[i]) dp[i+1][w] = max(dp[i][w-weight[i]] + value[i], dp[i][w]);
-      else dp[i+1][w] = dp[i][w];
+        if (w >= weight[i]) dp[i+1][w] = max(dp[i][w-weight[i]] + value[i], dp[i][w]);
+        else dp[i+1][w] = dp[i][w];
     }
-  }
+    }
 
-  for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
     for (int w = 0; w <= W; ++w) {
-      printf("%d ", dp[i][w]);
+        printf("%d ", dp[i][w]);
     }
     puts("");
-  }
+    }
 
-  printf("%d\n", dp[n][W]);
+    printf("%d\n", dp[n][W]);
 }
