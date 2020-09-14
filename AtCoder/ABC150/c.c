@@ -76,18 +76,19 @@ void factorize(int ftr[], int *num, int n){
 
 //#define N 5
 //int p[N + 1];
-int nextperm(int p[], int N)  /* 辞書式順序で次の順列 */
+// list, end_index
+int nextperm(int p[], int end)  /* 辞書式順序で次の順列 */
 {
     int i, j, t;
 
-    i = N - 1;
+    i = end - 1;
     p[0] = 0;  /* 番人 */
     while (p[i] >= p[i + 1]) i--;
     if (i == 0) return 0;  /* 完了 */
-    j = N;
+    j = end;
     while (p[i] >= p[j]) j--;
     t = p[i];  p[i] = p[j];  p[j] = t;
-    i++;  j = N;
+    i++;  j = end;
     while (i < j) {
         t = p[i];  p[i] = p[j];  p[j] = t;  i++;  j--;
     }
