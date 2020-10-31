@@ -4,7 +4,7 @@
 #include <math.h>
 
 typedef long long ll;
-typedef char keytype;
+typedef ll keytype;
 typedef void (*FUNCTYPE)();
 
 int gcd(int a, int b){ return (a % b) ? gcd(b, a % b) : b;}
@@ -39,26 +39,27 @@ void quicksort(keytype a[], int first, int last)
     if (j + 1 < last) quicksort(a, j + 1, last);
 }
 
-int is_prime(int x){
-    if(x <= 1) return 0;
-    for(int i = 2; i * i <= x; i++){
-        if(x % i == 0) return 0;
+int is_prime(ll n){
+    if(n <= 1) return 0;
+    for(ll i = 2; i * i <= n; i++){
+        if(n % i == 0) return 0;
     }
     return 1;
 }
 
-int is_substr(char s[], char t[], int i){
-    int flag = 1;
+void enum_divisors(ll div[], ll *num, ll n){
+    ll cnt = 0;
 
-    if(s[i] == '\0') flag = 0;
-
-    for(int j = 0; j < strlen(t); ++j, ++i){
-        if(s[i] != t[j]){
-            flag = 0;
-            break;
+    for(ll i = 1; i * i <= n; ++i){
+        if(n % i == 0){
+            div[cnt++] = i;
+            if(n / i != i){
+                div[cnt++] = n / i;
+            }
         }
     }
-    return flag;
+    *num = cnt;
+    quicksort(div, 0, cnt - 1);
 }
 
 // factor list, number of factors, natural number
@@ -74,6 +75,20 @@ void factorize(int ftr[], int *num, int n){
         }
     }
     *num = cnt;
+}
+
+int is_substr(char s[], char t[], int i){
+    int flag = 1;
+
+    if(s[i] == '\0') flag = 0;
+
+    for(int j = 0; j < strlen(t); ++j, ++i){
+        if(s[i] != t[j]){
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
 }
 
 //#define N 5
