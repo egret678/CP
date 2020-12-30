@@ -1,4 +1,7 @@
 # exclude executable file
 *.bin
+*.vscode
+*.dSYM
+*.in
 
 .DS_Store
