@@ -1,2 +1,2 @@
 # CP
-practice competitive programming with C
+practice competitive programming with C and C++
