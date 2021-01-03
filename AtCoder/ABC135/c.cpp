@@ -18,22 +18,19 @@ int main(){
     int n;
     cin >> n;
     vector<int> a(n+1), b(n);
-    int sum = 0;
-    for(auto& e:a){
-        cin >> e;
-        sum += e;
-    }
+    for(auto& e:a) cin >> e;
     for(auto& e:b) cin >> e;
 
     int diff_val = 0;
-    for(int i = 0; i < n + 1; ++i){
+    ll sum = 0;
+    for(int i = 0; i < n; ++i){
         diff_val = a[i] - b[i];
         if(diff_val > 0){
-            sum -= diff_val;
+            sum += b[i];
         }else{
+            sum += a[i] - max(-a[i+1], diff_val);
             a[i+1] += max(-a[i+1], diff_val);
         }
-
     }
 
     cout << sum << '\n';
