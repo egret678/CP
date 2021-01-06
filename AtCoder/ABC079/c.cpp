@@ -15,16 +15,10 @@ int factorial(int n){
     if(n == 0) return 1;
     else return factorial(n - 1) * n;
 }
-
 int my_calc(const int a, const int b, const char& ope){
-    if(ope == '+'){
-        return a + b;
-    }else if(ope == '-'){
-        return a - b;
-    }
-    else{
-        return 0;
-    }
+    if(ope == '+') return a + b;
+    else if(ope == '-') return a - b;
+    else return 0;
 }
 
 int main(){
