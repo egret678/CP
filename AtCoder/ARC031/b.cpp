@@ -51,7 +51,7 @@ int my_calc(const int a, const int b, const char& ope){
     else return 0;
 }
 
-void dfs(int h, int w, int H, int W, const vector<string>& field, vector<vector<bool>>& seen){
+void dfs_grid(int h, int w, int H, int W, const vector<string>& field, vector<vector<bool>>& seen){
     const int dx[4] = {1, 0, -1, 0};
     const int dy[4] = {0, 1, 0, -1};
 
@@ -64,7 +64,7 @@ void dfs(int h, int w, int H, int W, const vector<string>& field, vector<vector<
         if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
         if(field[nh][nw] == 'x') continue;
         if(seen[nh][nw]) continue;
-        dfs(nh, nw, H, W, field, seen);
+        dfs_grid(nh, nw, H, W, field, seen);
     }
 }
 
@@ -86,7 +86,7 @@ int main(){
             for(int k = 0; k < len; ++k){
                 for(int l = 0; l < len; ++l){
                     if(field[k][l] == 'x' || seen[k][l] == true) continue;
-                    dfs(k, l, len, len, field, seen);
+                    dfs_grid(k, l, len, len, field, seen);
                     cnt++;
                 }
             }
